@@ -1,5 +1,7 @@
 package main
 
+// DRY & YAGNI
+
 // BAD
 
 type UnitBad struct {

@@ -1,6 +1,6 @@
 package main
 
-// GOOD
+// BEST
 
 type UnitGood struct {
 	health   uint
