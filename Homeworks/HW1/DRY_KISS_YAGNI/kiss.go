@@ -35,8 +35,9 @@ func getMonth(num uint) (string, error) {
 }
 
 // BETTER
+var months = []string{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"}
+
 func getMonthBetterWay(num uint) (string, error) {
-	months := []string{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"}
 
 	if num > 12 {
 		return "", fmt.Errorf("You entered unsupported month's number")
@@ -47,7 +48,6 @@ func getMonthBetterWay(num uint) (string, error) {
 
 // GOOD
 func getMonthGoodWay(num uint) (string, error) {
-	months := []string{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"}
 
 	if num > uint(len(months)) {
 		return "", fmt.Errorf("You entered unsupported month's number")
