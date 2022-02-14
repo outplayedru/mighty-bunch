@@ -44,6 +44,8 @@ namespace SOLID_Simple
 		private Keyboard _keyboard;
 		private Monitor _monitor;
 
+		private int _numCPU;
+
 		public Workstation(Keyboard kb, Monitor mn)
 		{
 			_keyboard = kb;
