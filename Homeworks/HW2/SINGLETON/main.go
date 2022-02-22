@@ -1,20 +1,23 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"singleton/field"
+)
 
 func main() {
-	field := GetField()
-	fmt.Println(field)
+	fieldFirst := field.GetField()
+	fmt.Println(fieldFirst)
 
-	fieldSecond := GetField()
+	fieldSecond := field.GetField()
 	fmt.Println(fieldSecond)
 
-	fmt.Printf("\n%v and %v are equal: %t\n\n", field, fieldSecond, (field == fieldSecond))
+	fmt.Printf("\n%v and %v are equal: %t\n\n", fieldFirst, fieldSecond, (fieldFirst == fieldSecond))
 
-	field.Add("paladin")
-	fmt.Println(field)
+	fieldFirst.Add("paladin")
+	fmt.Println(fieldFirst)
 
-	wizardId := field.Find("wizard")
+	wizardId := fieldFirst.Find("wizard")
 	fmt.Printf("Id of wizard is: %d", wizardId)
 
 }

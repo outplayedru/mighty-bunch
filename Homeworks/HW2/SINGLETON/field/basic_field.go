@@ -1,15 +1,15 @@
-package main
+package field
 
 import (
 	"fmt"
 	"strings"
 )
 
-type BasicField struct {
+type basicField struct {
 	data []string
 }
 
-func (b *BasicField) Find(s string) int {
+func (b *basicField) Find(s string) int {
 	for i := range b.data {
 		if b.data[i] == s {
 			return i
@@ -19,7 +19,7 @@ func (b *BasicField) Find(s string) int {
 	return -1
 }
 
-func (b *BasicField) Add(s string) {
+func (b *basicField) Add(s string) {
 	if b.Find(s) != -1 {
 		fmt.Printf("%s already at the field\n", s)
 		return
@@ -28,6 +28,6 @@ func (b *BasicField) Add(s string) {
 	b.data = append(b.data, s)
 }
 
-func (b *BasicField) String() string {
+func (b *basicField) String() string {
 	return strings.Join(b.data, ", ")
 }

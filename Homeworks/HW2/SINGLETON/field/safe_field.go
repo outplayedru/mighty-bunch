@@ -1,4 +1,4 @@
-package main
+package field
 
 import (
 	"fmt"
@@ -6,12 +6,12 @@ import (
 	"sync"
 )
 
-type SafeField struct {
+type safeField struct {
 	data []string
 	sync.RWMutex
 }
 
-func (sf *SafeField) Find(s string) int {
+func (sf *safeField) Find(s string) int {
 	// Lock only for read
 	sf.RLock()
 	defer sf.RUnlock()
@@ -25,7 +25,7 @@ func (sf *SafeField) Find(s string) int {
 	return -1
 }
 
-func (sf *SafeField) Add(s string) {
+func (sf *safeField) Add(s string) {
 	if sf.Find(s) != -1 {
 		fmt.Printf("%s already at the field\n", s)
 		return
@@ -38,6 +38,6 @@ func (sf *SafeField) Add(s string) {
 	sf.data = append(sf.data, s)
 }
 
-func (sf *SafeField) String() string {
+func (sf *safeField) String() string {
 	return strings.Join(sf.data, ", ")
 }

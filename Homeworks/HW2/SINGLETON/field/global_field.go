@@ -1,4 +1,4 @@
-package main
+package field
 
 import (
 	"fmt"
@@ -21,7 +21,7 @@ func GetField() Fielder {
 	once.Do(func() {
 		fmt.Println("Creating field...")
 
-		globalField = &BasicField{
+		globalField = &basicField{
 			data: []string{"knight", "wizard"},
 		}
 	})
