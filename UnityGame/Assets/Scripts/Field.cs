@@ -47,4 +47,18 @@ public class Field
 			}
 		}
 	}
+
+	public void Wasted()
+	{
+		//Подписчик на проигрыш линии
+		//Переносит юнито в другую линию если пришло сообщение о проигрыше 
+	}
+
+	public void MovementIteration()
+	{
+		foreach (var line in lines)
+		{
+			line.Movement();
+		}
+	}
 }

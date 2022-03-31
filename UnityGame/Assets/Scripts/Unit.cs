@@ -14,19 +14,20 @@ public interface IUnit
 	// public IItem Equipment { get; set; }
 
 	// Публичные методы
-	public void SpecialAbility();
+	public  void SpecialAbility();
+	public void Hit(uint damageTaken);
+	public void Heal(uint receivedHealing);
 }
 
-// Тестовая реализация интерфейса IUnit
-class TestUnit : IUnit
+abstract public class Unit : IUnit
 {
-	private uint _id;
-	private string _name;
-	private int _hp;
-	private uint _dmg;
-	private uint _def;
-	private uint _range;
-	private uint _cost;
+	protected uint _id;
+	protected string _name;
+	protected int _hp;
+	protected uint _dmg;
+	protected uint _def;
+	protected uint _range;
+	protected uint _cost;
 
 	public uint Id => _id;
 	public string Name => _name;
@@ -36,6 +37,26 @@ class TestUnit : IUnit
 	public uint AttackRange => _range;
 	public uint Cost => _cost;
 
+	public abstract void SpecialAbility();
+
+	public void Hit(uint damageTaken)
+	{
+		//Прописть условие на смерть
+		//Если смерть то отправить линии о мерти юнита
+		//Удачи тарас)
+	}
+
+	public void Heal(uint receivedHealing)
+	{
+
+	}
+}
+
+
+
+// Тестовая реализация интерфейса IUnit
+class TestUnit : Unit
+{
 	public TestUnit()
 	{}
 
@@ -50,7 +71,7 @@ class TestUnit : IUnit
 		_cost = cost;
 	}
 
-	public void SpecialAbility()
+	public override void SpecialAbility()
 	{
 		// Какое-то действие
 	}
