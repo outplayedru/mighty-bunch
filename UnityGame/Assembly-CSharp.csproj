@@ -59,7 +59,7 @@
     <Compile Include="Assets\Scripts\Unit.cs" />
     <Compile Include="Assets\Scripts\Line.cs" />
     <Compile Include="Assets\Scripts\Field.cs" />
-    <Compile Include="Assets\Scripts\UintFactory.cs" />
+    <Compile Include="Assets\Scripts\UnitFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

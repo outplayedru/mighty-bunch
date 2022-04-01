@@ -14,7 +14,7 @@ public interface IUnit
 	// public IItem Equipment { get; set; }
 
 	// Публичные методы
-	public  void SpecialAbility();
+	public void SpecialAbility();
 	public void Hit(uint damageTaken);
 	public void Heal(uint receivedHealing);
 }
