@@ -23,9 +23,14 @@ class TestUnitCreator :UnitFactory
 	}
 }
 
-<<<<<<< HEAD
 class WizardCreator : UnitFactory
-=======
+{
+	public override IUnit Create()
+	{
+		return new Wizard();
+	}
+}
+
 class WariorCreator :UnitFactory
 {
 	public override IUnit Create()
@@ -63,15 +68,6 @@ class MusketeerCreator :UnitFactory
 	public override IUnit Create()
 	{
 		return new Musketeer();
-	}
-}
-
-class KamenukaCreator : UnitFactory
->>>>>>> d56e42984a30816e2a0b66ca0e9d188aca0e68d0
-{
-	public override IUnit Create()
-	{
-		return new Wizard();
 	}
 }
 
