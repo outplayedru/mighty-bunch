@@ -7,6 +7,8 @@ public class Line
 	public List<IUnit> leftFront = new List<IUnit>();
 	public List<IUnit> rightFront = new List<IUnit>();
 
+	public int leftDeath;
+	public int rightDeath;
 	public void addLeft(IUnit unit)
 	{
 		leftFront.Add(unit);
@@ -23,6 +25,8 @@ public class Line
 		//Удаляет юнита если пришло сообщение о смерти
 
 		//Если все юниты умерли, то отправляет сообщение о проигрыше полю 
+
+		//Добавляет умершего юнита в счетчик смертей фронта линии
 	}
 
 	public void Movement()
