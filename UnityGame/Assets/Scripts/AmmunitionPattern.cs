@@ -3,9 +3,18 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ammunition : MonoBehaviour
-{
-    abstract class AmmunitionPattern
+//public class Ammunition : MonoBehaviour
+//{
+    interface IAmmunition
+    {
+        public string Name { get; }//Название предмета
+        public bool IsDefense { get; }//Переменная определяющая атакующий предмет или защищающий
+        public int Value { get; }//Определение значения(величины) накладываемого бафа
+        public int Range { get; }//Определение дистанции действия абилки
+
+    }
+    
+    abstract class AmmunitionPattern : IAmmunition
     {
         protected string _name;
         protected bool _isDefense;
@@ -80,14 +89,14 @@ public class Ammunition : MonoBehaviour
         }
     }
 
-void Start()
-    {
+//void Start()
+//    {
         
-    }
+//    }
 
     // Update is called once per frame
-    void Update()
-    {
+//    void Update()
+//    {
         
-    }
-}
+ //   }
+//}
