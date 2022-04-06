@@ -7,14 +7,14 @@ public abstract class UnitFactory
 	public IUnit CreateUnit()
 	{
 		IUnit unit = Create();
-		// Место для дополнительного функционтала
+		// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		return unit;
 	}
 
 	public abstract IUnit Create();
 }
 
-// Пример обьявления создателя для тестого класса
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 class TestUnitCreator :UnitFactory
 {
 	public override IUnit Create()
@@ -23,7 +23,51 @@ class TestUnitCreator :UnitFactory
 	}
 }
 
+<<<<<<< HEAD
 class WizardCreator : UnitFactory
+=======
+class WariorCreator :UnitFactory
+{
+	public override IUnit Create()
+	{
+		return new Warior();
+	}
+}
+
+class ArcherCreator :UnitFactory
+{
+	public override IUnit Create()
+	{
+		return new Archer();
+	}
+}
+
+class KinghtCreator :UnitFactory
+{
+	public override IUnit Create()
+	{
+		return new Kinght();
+	}
+}
+
+class HealerCreator :UnitFactory
+{
+	public override IUnit Create()
+	{
+		return new Healer();
+	}
+}
+
+class MusketeerCreator :UnitFactory
+{
+	public override IUnit Create()
+	{
+		return new Musketeer();
+	}
+}
+
+class KamenukaCreator : UnitFactory
+>>>>>>> d56e42984a30816e2a0b66ca0e9d188aca0e68d0
 {
 	public override IUnit Create()
 	{
@@ -106,8 +150,8 @@ class PolitePersonCreator : UnitFactory
 
 class Barracks
 {
-	// Просто проходите мимо
-	// Не на что тут смотреть (с)Полина
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+	// пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅ)пїЅпїЅпїЅпїЅпїЅпїЅ
 	//public delegate IUnit CreateDelegate();
 	//public static Dictionary<uint, CreateDelegate> CreateDictionary = 
 	//	new Dictionary<uint, CreateDelegate> 

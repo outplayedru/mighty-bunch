@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Collections.Generic;
 
 public interface IUnit
 {
-	// Публичные свойства
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	public uint Id { get; }
 	public string Name { get; }
 	public int Health { get; }
@@ -18,10 +19,10 @@ public interface IUnit
 
 	public uint Cost { get; }
 
-	// ! Для реализации хранение вещей необходим интерфейс вещи
+	// ! пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	// public IItem Equipment { get; set; }
 
-	// Публичные методы
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	public void SpecialAbility(Line line, uint index, char friendly);
 	public List<IUnit> GetFriendlyFront(char friendly, Line line);
 	public List<IUnit> GetEnemyFront(char friendly, Line line);
@@ -54,7 +55,7 @@ abstract public class Unit : IUnit
 
 	public abstract void SpecialAbility(Line line, uint index, char friendly);
 
-	public bool IsAbility()//метод определения прокнула абилка или нет
+	public bool IsAbility()//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ
     {
 		float chance = UnityEngine.Random.Range(0.0f, 1.0f);
 		if(_chance < chance)
@@ -84,13 +85,13 @@ abstract public class Unit : IUnit
 
 	public void Hit(uint damageTaken)
 	{
-		//Прописть условие на смерть
-		//Если смерть то отправить линии о мерти юнита
-		//Удачи тарас)
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+		//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+		//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ)
 		_hp = (int)UnityEngine.Mathf.Max(_hp - damageTaken + _def, 0);
 		if(_hp == 0)
         {
-			//Отправить сообщение линии о смерти юнита
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
         }
 	}
 
@@ -105,7 +106,7 @@ class Wizard : Unit
 	public Wizard()
 	{
 		_id = 3;
-		_name = "Маг";
+		_name = "пїЅпїЅпїЅ";
 		_hp = 4;
 		_maxHP = 0;
 		_dmg = 5;
@@ -150,7 +151,7 @@ class Tumbleweed : Unit
 	public Tumbleweed()
     {
 		_id = 4;
-		_name = "Перекати-поле";
+		_name = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅ";
 		_hp = 15;
 		_maxHP = 0;
 		_dmg = 0;
@@ -161,7 +162,7 @@ class Tumbleweed : Unit
 	}
 	public override void SpecialAbility(Line line, uint index, char friendly)
     {
-		//Ничего не произошло хыыыы
+		//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     }
 }
 
@@ -338,7 +339,7 @@ class Kamenuka : Unit
 	public Kamenuka()
 	{
 		_id = 13;
-		_name = "Камэнюка";
+		_name = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
 		_hp = 15;
 		_maxHP = 0;
 		_dmg = 0;
@@ -349,7 +350,7 @@ class Kamenuka : Unit
 	}
 	public override void SpecialAbility(Line line, uint index, char friendly)
 	{
-		//Ничего не произошло хыыыы
+		//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	}
 }
 
@@ -412,7 +413,7 @@ class PolitePerson : Unit
 
 
 
-// Тестовая реализация интерфейса IUnit
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ IUnit
 class TestUnit : Unit
 {
 	public TestUnit()
@@ -420,8 +421,8 @@ class TestUnit : Unit
 
 	public TestUnit(uint id, int hp, uint dmg, uint def, uint range, uint cost, float chance)
 	{
-		_id = id; // Последовательные значения id от 0 до max uint
-		_name = "Название юнита";
+		_id = id; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ id пїЅпїЅ 0 пїЅпїЅ max uint
+		_name = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ";
 		_hp = hp;
 		_dmg = dmg;
 		_def = def;
@@ -432,6 +433,180 @@ class TestUnit : Unit
 
 	public override void SpecialAbility(Line line, uint index, char friendly)
 	{
-		// Какое-то действие
+		// пїЅпїЅпїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	}
+}
+
+class Warior : Unit
+{
+	public Warior()
+	{
+		_id = 1; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ id пїЅпїЅ 0 пїЅпїЅ max uint
+		_name = "Р’РѕРёРЅ";
+		_hp = 5;
+		_dmg = 1;
+		_def = 1;
+		_range = 1;
+		_cost = 2;
+		_chance = 0.3f;
+	}
+
+	private bool Dress(Kinght warior)
+	{
+		List<String> ups = new List<String> {"РЁР»РµРј", "Р©РёС‚", "РџРёРєР°", "РљРѕРЅСЏС€РєР°"};
+		foreach (var ammunition in warior.DressedAmmunitions)
+		{
+			ups.Remove(ammunition.Name);
+		}
+
+		if (ups.Count > 0)
+		{
+			int index = (int) (UnityEngine.Random.Range(0.0f, .99f) * ups.Count);
+			switch (ups[index])
+			{
+				case "РЁР»РµРј" : 
+					warior.DressedAmmunitions.Add(new Hemlet());
+					break; 
+				case "Р©РёС‚" : 
+					warior.DressedAmmunitions.Add(new Shield());
+					break; 
+				case "РџРёРєР°" : 
+					warior.DressedAmmunitions.Add(new Peak());
+					break; 
+				case "РљРѕРЅСЏС€РєР°" : 
+					warior.DressedAmmunitions.Add(new Horse());
+					break;
+				default : break;
+			}
+			return true;
+		}
+
+		return false;
+	}
+	public override void SpecialAbility(Line line, uint index, char friendly)
+	{
+		List<IUnit> friends = this.GetFriendlyFront(friendly, line);
+		if (friends.Count > 1)
+		{
+			bool dressFlg = false;
+			if (index > 0 && friends[(int) index - 1].Id == 5)
+			{
+				dressFlg = Dress((Kinght)friends[(int) index - 1]);
+			}
+			if (!dressFlg && index < friends.Count - 1 && friends[(int) index + 1].Id == 5)
+			{
+				Dress((Kinght)friends[(int) index + 1]);
+			}
+		}
+	}
+}
+
+class Archer : Unit
+{
+	public Archer()
+	{
+		_id = 2; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ id пїЅпїЅ 0 пїЅпїЅ max uint
+		_name = "Р›СѓС‡РЅРёРє";
+		_hp = 5;
+		_dmg = 2;
+		_def = 0;
+		_range = 3;
+		_cost = 4;
+		_chance = 0.25f;
+	}
+
+	public override void SpecialAbility(Line line, uint index, char friendly)
+	{
+		if (IsAbility())
+		{
+			if (this.GetEnemyFront(friendly, line).Count >= 2)
+			{
+				this.GetEnemyFront(friendly, line)[1].Hit(_dmg);
+			}
+		}
+	}
+}
+
+class Kinght : Unit
+{
+	public Kinght()
+	{
+		_id = 5; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ id пїЅпїЅ 0 пїЅпїЅ max uint
+		_name = "Р С‹С†Р°СЂСЊ";
+		_hp = 10;
+		_maxHP = 10;
+		_dmg = 4;
+		_def = 1;
+		_range = 1;
+		_cost = 12;
+		_chance = 0;
+	}
+
+	public List<IAmmunition> DressedAmmunitions { get; } = new List<IAmmunition>();
+	public override void SpecialAbility(Line line, uint index, char friendly)
+	{
+		// пїЅпїЅпїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	}
+}
+
+class Musketeer : Unit
+{
+	public Musketeer()
+	{
+		_id = 7; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ id пїЅпїЅ 0 пїЅпїЅ max uint
+		_name = "РњСѓС€РєРµС‚РµСЂ";
+		_hp = 12;
+		_maxHP = 12;
+		_dmg = 5;
+		_def = 3;
+		_range = 3;
+		_cost = 6;
+		_chance = 0.15f;
+	}
+
+	public override void SpecialAbility(Line line, uint index, char friendly)
+	{
+		if (IsAbility())
+		{
+			foreach (var unit in this.GetEnemyFront(friendly, line))
+			{
+				unit.Hit(_dmg);
+			}
+		}
+	}
+}
+
+class Healer : Unit
+{
+	public Healer()
+	{
+		_id = 6; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ id пїЅпїЅ 0 пїЅпїЅ max uint
+		_name = "Р¦РµР»РёС‚РµР»СЊ";
+		_hp = 6;
+		_maxHP = 6;
+		_dmg = 1;
+		_def = 2;
+		_range = 1;
+		_cost = 8;
+		_chance = 0.33f;
+	}
+
+	public override void SpecialAbility(Line line, uint index, char friendly)
+	{
+		if (IsAbility())
+		{
+			List<IUnit> friends = this.GetFriendlyFront(friendly, line);
+			IUnit friend = null;
+			if (friends.Count > 1)
+			{
+				if (index > 0)
+					friend = friends[(int)index - 1];
+				if (index < friends.Count - 1 && (friend == null || friend.Health < friends[(int) index + 1].Health))
+					friend = friends[(int) index + 1];
+				
+				if (friend != null)
+					friend.Heal((uint)friend.Health);
+			}
+		}
 	}
 }
