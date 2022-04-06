@@ -23,6 +23,21 @@ class TestUnitCreator :UnitFactory
 	}
 }
 
+class KamenukaCreator : UnitFactory
+{
+	public override IUnit Create()
+	{
+		return new Kamenuka();
+	}
+}
+
+class TumbleweedCreator : UnitFactory
+{
+	public override IUnit Create()
+	{
+		return new Tumbleweed();
+	}
+}
 class Barracks
 {
 	// Просто проходите мимо
@@ -41,6 +56,14 @@ class Barracks
 		if (id == 0)
 		{
 			uintFactory = new TestUnitCreator();
+		}
+		if (id == 4)
+        {
+			uintFactory = new TumbleweedCreator();
+		}
+		if (id == 13)
+        {
+			uintFactory = new KamenukaCreator();
 		}
 		return uintFactory.CreateUnit();
 	}

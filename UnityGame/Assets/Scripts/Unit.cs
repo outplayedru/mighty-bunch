@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 //UnityEngine.Random.Range
 
@@ -20,7 +22,9 @@ public interface IUnit
 	// public IItem Equipment { get; set; }
 
 	// Публичные методы
-	public void SpecialAbility();
+	public void SpecialAbility(Line line, uint index, char friendly);
+	public List<IUnit> GetFriendlyFront(char friendly, Line line);
+	public List<IUnit> GetEnemyFront(char friendly, Line line);
 	public void Hit(uint damageTaken);
 	public bool IsAbility();
 	public void Heal(uint receivedHealing);
@@ -48,7 +52,7 @@ abstract public class Unit : IUnit
 	public uint Cost => _cost;
 	public float AbilityChance => _chance;
 
-	public abstract void SpecialAbility();
+	public abstract void SpecialAbility(Line line, uint index, char friendly);
 
 	public bool IsAbility()//метод определения прокнула абилка или нет
     {
@@ -60,12 +64,30 @@ abstract public class Unit : IUnit
 		return false;
     }
 
+	public List<IUnit> GetFriendlyFront(char friendly, Line line)
+    {
+		if(friendly == 'l')
+        {
+			return line.leftFront;
+        }
+		return line.rightFront;
+    }
+
+	public List<IUnit> GetEnemyFront(char friendly, Line line)
+    {
+		if (friendly == 'r')
+		{
+			return line.leftFront;
+		}
+		return line.rightFront;
+	}
+
 	public void Hit(uint damageTaken)
 	{
 		//Прописть условие на смерть
 		//Если смерть то отправить линии о мерти юнита
 		//Удачи тарас)
-		_hp = (int)UnityEngine.Mathf.Max(_hp - damageTaken, 0);
+		_hp = (int)UnityEngine.Mathf.Max(_hp - damageTaken + _def, 0);
 		if(_hp == 0)
         {
 			//Отправить сообщение линии о смерти юнита
@@ -77,6 +99,77 @@ abstract public class Unit : IUnit
 		_hp = (int)UnityEngine.Mathf.Min(_hp + receivedHealing, _maxHP); 
 	}
 }
+
+class Wizard : Unit
+{
+	public Wizard()
+	{
+		_id = 3;
+		_name = "Маг";
+		_hp = 4;
+		_maxHP = 0;
+		_dmg = 5;
+		_def = 2;
+		_range = 3;
+		_cost = 10;
+		_chance = 20;
+	}
+	public override void SpecialAbility(Line line, uint index, char friendly)
+	{
+		/*
+		if(IsAbility())
+        {
+            if (frienly[(int)index - 1] != null)
+            {
+                uint newId = frienly[(int)index - 1].Id;
+
+            }
+        }
+		*/
+	}
+}
+
+class Tumbleweed : Unit
+{
+	public Tumbleweed()
+    {
+		_id = 4;
+		_name = "Перекати-поле";
+		_hp = 15;
+		_maxHP = 0;
+		_dmg = 0;
+		_def = 3;
+		_range = 0;
+		_cost = 15;
+		_chance = 0;
+	}
+	public override void SpecialAbility(Line line, uint index, char friendly)
+    {
+		//Ничего не произошло хыыыы
+    }
+}
+
+class Kamenuka : Unit
+{
+	public Kamenuka()
+	{
+		_id = 13;
+		_name = "Камэнюка";
+		_hp = 15;
+		_maxHP = 0;
+		_dmg = 0;
+		_def = 9;
+		_range = 0;
+		_cost = 15;
+		_chance = 0;
+	}
+	public override void SpecialAbility(Line line, uint index, char friendly)
+	{
+		//Ничего не произошло хыыыы
+	}
+}
+
+
 
 
 
@@ -95,10 +188,10 @@ class TestUnit : Unit
 		_def = def;
 		_range = range;
 		_cost = cost;
-		_chance = _chance;
+		_chance = chance;
 	}
 
-	public override void SpecialAbility()
+	public override void SpecialAbility(Line line, uint index, char friendly)
 	{
 		// Какое-то действие
 	}

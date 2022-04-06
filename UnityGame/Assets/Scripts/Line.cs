@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Line
 {
-	private List<IUnit> leftFront = new List<IUnit>();
-	private List<IUnit> rightFront = new List<IUnit>();
+	public List<IUnit> leftFront = new List<IUnit>();
+	public List<IUnit> rightFront = new List<IUnit>();
 
 	public void addLeft(IUnit unit)
 	{
@@ -32,7 +32,7 @@ public class Line
 			if (rightFront.Count > 0 && leftFront[i].AttackRange > i)
 			{
 				rightFront[0].Hit(leftFront[i].Damage);
-				leftFront[i].SpecialAbility();
+				leftFront[i].SpecialAbility(this, (uint)i, 'l');
 			}
 		}
 		for (int i = 0; i < rightFront.Count; i++)
@@ -40,7 +40,7 @@ public class Line
 			if (leftFront.Count > 0 && rightFront[i].AttackRange > i)
 			{
 				leftFront[0].Hit(rightFront[i].Damage);
-				rightFront[i].SpecialAbility();
+				rightFront[i].SpecialAbility(this, (uint)i, 'r');
 			}
 		}
 	}
