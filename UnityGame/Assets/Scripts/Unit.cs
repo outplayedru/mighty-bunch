@@ -106,7 +106,7 @@ class Wizard : Unit
 	public Wizard()
 	{
 		_id = 3;
-		_name = "пїЅпїЅпїЅ";
+		_name = "Wizard";
 		_hp = 4;
 		_maxHP = 0;
 		_dmg = 5;
@@ -123,11 +123,11 @@ class Wizard : Unit
 			Barracks a = new Barracks();
 			int newId = -1;
 
-			if (friend[(int)index - 1] != null)
+			if (index - 1 >= 0)
             {
                 newId = (int)friend[(int)index - 1].Id;
             }
-			else if (friend[(int)index + 1] != null)
+			else if (index + 1 < friend.Count)
 			{
 				newId = (int)friend[(int)index + 1].Id;
 			}
@@ -151,7 +151,7 @@ class Tumbleweed : Unit
 	public Tumbleweed()
     {
 		_id = 4;
-		_name = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅ";
+		_name = "Tumbleweed";
 		_hp = 15;
 		_maxHP = 0;
 		_dmg = 0;
@@ -171,7 +171,7 @@ class Skeleton : Unit
 	public Skeleton()
 	{
 		_id = 8;
-		_name = "Скелет";
+		_name = "Skeleton";
 		_hp = 5;
 		_maxHP = 5;
 		_dmg = 1;
@@ -191,7 +191,7 @@ class Spearman : Unit
 	public Spearman()
 	{
 		_id = 9;
-		_name = "Копейщик";
+		_name = "Spearman";
 		_hp = 5;
 		_maxHP = 5;
 		_dmg = 5;
@@ -204,16 +204,28 @@ class Spearman : Unit
 	{
 		if(IsAbility())
         {
-			List<IUnit> friend = GetFriendlyFront(friendly, line);
 			List<IUnit> enemy = GetEnemyFront(friendly, line);
 			if (index == 0)
             {
-				enemy[2].Hit(15);
-				enemy[0].Hit(4);
-				enemy[1].Hit(4);
+				if (enemy.Count > 2)
+				{
+					enemy[2].Hit(15);
+					enemy[0].Hit(4);
+					enemy[1].Hit(4);
+				}
+				else if(enemy.Count == 2)
+                {
+					enemy[1].Hit(15);
+					enemy[0].Hit(4);
+				}
+				else if(enemy.Count == 1)
+                {
+					enemy[0].Hit(15);
+				}
 			}
 			else
-				enemy[0].Hit(15);
+				if(enemy.Count == 1)
+					enemy[0].Hit(15);
 		}
 	}
 }
@@ -223,7 +235,7 @@ class Necromancer : Unit
 	public Necromancer()
 	{
 		_id = 10;
-		_name = "Некромант";
+		_name = "Necromancer";
 		_hp = 4;
 		_maxHP = 4;
 		_dmg = 5;
@@ -264,7 +276,7 @@ class Warlock : Unit
 	public Warlock()
 	{
 		_id = 11;
-		_name = "Чернокнижник";
+		_name = "Warlock";
 		_hp = 7;
 		_maxHP = 0;
 		_dmg = 6;
@@ -288,7 +300,7 @@ class Warlock : Unit
 			_dmg -= 4;
 			_def -= 8;
 		}
-		else
+		else if(AbilityDuration != 0)
         {
 			AbilityDuration--;
         }
@@ -302,7 +314,7 @@ class Demon : Unit
 	public Demon()
 	{
 		_id = 12;
-		_name = "Демон";
+		_name = "Demon";
 		_hp = 10;
 		_maxHP = 10;
 		_dmg = 5;
@@ -339,7 +351,7 @@ class Kamenuka : Unit
 	public Kamenuka()
 	{
 		_id = 13;
-		_name = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
+		_name = "Kamenuka";
 		_hp = 15;
 		_maxHP = 0;
 		_dmg = 0;
@@ -359,7 +371,7 @@ class Kotopulka : Unit
 	public Kotopulka()
 	{
 		_id = 13;
-		_name = "Котопулька";
+		_name = "Kotopulka";
 		_hp = 9;
 		_maxHP = 0;
 		_dmg = 8;
@@ -373,10 +385,22 @@ class Kotopulka : Unit
 		if(IsAbility())
         {
 			List<IUnit> enemy = GetEnemyFront(friendly, line);
-			enemy[0].Hit(4);
-			enemy[1].Hit(4);
-			enemy[2].Hit(4);
 
+			if (enemy.Count > 2)
+			{
+				enemy[2].Hit(4);
+				enemy[0].Hit(4);
+				enemy[1].Hit(4);
+			}
+			else if (enemy.Count == 2)
+			{
+				enemy[1].Hit(4);
+				enemy[0].Hit(4);
+			}
+			else if (enemy.Count == 1)
+			{
+				enemy[0].Hit(4);
+			}
 			//добавить линию сверху и снизу
 		}
 	}
@@ -387,7 +411,7 @@ class PolitePerson : Unit
 	public PolitePerson()
 	{
 		_id = 15;
-		_name = "Вежливый человек";
+		_name = "PolitePerson";
 		_hp = 15;
 		_maxHP = 15;
 		_dmg = 10;
@@ -411,8 +435,6 @@ class PolitePerson : Unit
 
 
 
-
-
 // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ IUnit
 class TestUnit : Unit
 {
@@ -422,7 +444,7 @@ class TestUnit : Unit
 	public TestUnit(uint id, int hp, uint dmg, uint def, uint range, uint cost, float chance)
 	{
 		_id = id; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ id пїЅпїЅ 0 пїЅпїЅ max uint
-		_name = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ";
+		_name = "TestUnit";
 		_hp = hp;
 		_dmg = dmg;
 		_def = def;
@@ -442,7 +464,7 @@ class Warior : Unit
 	public Warior()
 	{
 		_id = 1; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ id пїЅпїЅ 0 пїЅпїЅ max uint
-		_name = "Р’РѕРёРЅ";
+		_name = "Warior";
 		_hp = 5;
 		_dmg = 1;
 		_def = 1;
@@ -506,7 +528,7 @@ class Archer : Unit
 	public Archer()
 	{
 		_id = 2; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ id пїЅпїЅ 0 пїЅпїЅ max uint
-		_name = "Р›СѓС‡РЅРёРє";
+		_name = "Archer";
 		_hp = 5;
 		_dmg = 2;
 		_def = 0;
@@ -532,7 +554,7 @@ class Kinght : Unit
 	public Kinght()
 	{
 		_id = 5; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ id пїЅпїЅ 0 пїЅпїЅ max uint
-		_name = "Р С‹С†Р°СЂСЊ";
+		_name = "Kinght";
 		_hp = 10;
 		_maxHP = 10;
 		_dmg = 4;
@@ -554,7 +576,7 @@ class Musketeer : Unit
 	public Musketeer()
 	{
 		_id = 7; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ id пїЅпїЅ 0 пїЅпїЅ max uint
-		_name = "РњСѓС€РєРµС‚РµСЂ";
+		_name = "Musketeer";
 		_hp = 12;
 		_maxHP = 12;
 		_dmg = 5;
@@ -581,7 +603,7 @@ class Healer : Unit
 	public Healer()
 	{
 		_id = 6; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ id пїЅпїЅ 0 пїЅпїЅ max uint
-		_name = "Р¦РµР»РёС‚РµР»СЊ";
+		_name = "Healer";
 		_hp = 6;
 		_maxHP = 6;
 		_dmg = 1;
