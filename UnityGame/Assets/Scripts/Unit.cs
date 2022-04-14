@@ -83,7 +83,7 @@ abstract public class Unit : IUnit
 		return line.rightFront;
 	}
 
-	public void Hit(uint damageTaken)
+	public virtual void Hit(uint damageTaken)
 	{
 		//�������� ������� �� ������
 		//���� ������ �� ��������� ����� � ����� �����
@@ -561,13 +561,31 @@ class Kinght : Unit
 		_def = 1;
 		_range = 1;
 		_cost = 12;
-		_chance = 0;
+		_chance = 0.15f;
 	}
 
 	public List<IAmmunition> DressedAmmunitions { get; } = new List<IAmmunition>();
 	public override void SpecialAbility(Line line, uint index, char friendly)
 	{
 		// �����-�� ��������
+	}
+
+
+	public override void Hit(uint damageTaken)
+	{
+		// Get hit from enemy.
+		base.Hit(damageTaken);
+		
+		// May lose one of dressed ammunition.
+		if (IsAbility())
+		{
+			var idx = DressedAmmunitions.Count - 1;
+
+			if (idx >= 0)
+			{
+				 DressedAmmunitions.RemoveAt(idx);
+			}
+		}
 	}
 }
 
