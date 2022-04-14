@@ -55,31 +55,35 @@ abstract public class Unit : IUnit
 
 	public abstract void SpecialAbility(Line line, uint index, char friendly);
 
-	public bool IsAbility()//ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
-    {
+	public bool
+		IsAbility() //ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+	{
 		float chance = UnityEngine.Random.Range(0.0f, 1.0f);
-		if(_chance < chance)
-        {
+		if (_chance < chance)
+		{
 			return true;
-        }
+		}
+
 		return false;
-    }
+	}
 
 	public List<IUnit> GetFriendlyFront(char friendly, Line line)
-    {
-		if(friendly == 'l')
-        {
+	{
+		if (friendly == 'l')
+		{
 			return line.leftFront;
-        }
+		}
+
 		return line.rightFront;
-    }
+	}
 
 	public List<IUnit> GetEnemyFront(char friendly, Line line)
-    {
+	{
 		if (friendly == 'r')
 		{
 			return line.leftFront;
 		}
+
 		return line.rightFront;
 	}
 
@@ -88,16 +92,16 @@ abstract public class Unit : IUnit
 		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 		//ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½)
-		_hp = (int)UnityEngine.Mathf.Max(_hp - damageTaken + _def, 0);
-		if(_hp == 0)
-        {
+		_hp = (int) UnityEngine.Mathf.Max(_hp - damageTaken + _def, 0);
+		if (_hp == 0)
+		{
 			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
-        }
+		}
 	}
 
 	public void Heal(uint receivedHealing)
 	{
-		_hp = (int)UnityEngine.Mathf.Min(_hp + receivedHealing, _maxHP); 
+		_hp = (int) UnityEngine.Mathf.Min(_hp + receivedHealing, _maxHP);
 	}
 }
 
@@ -115,33 +119,35 @@ class Wizard : Unit
 		_cost = 10;
 		_chance = 0.2f;
 	}
+
 	public override void SpecialAbility(Line line, uint index, char friendly)
 	{
-		if(IsAbility())
-        {
+		if (IsAbility())
+		{
 			List<IUnit> friend = GetFriendlyFront(friendly, line);
 			Barracks a = new Barracks();
 			int newId = -1;
 
 			if (index - 1 >= 0)
-            {
-                newId = (int)friend[(int)index - 1].Id;
-            }
+			{
+				newId = (int) friend[(int) index - 1].Id;
+			}
 			else if (index + 1 < friend.Count)
 			{
-				newId = (int)friend[(int)index + 1].Id;
+				newId = (int) friend[(int) index + 1].Id;
 			}
+
 			if (newId != -1)
-            {
+			{
 				if (friendly == 'l')
 				{
 					line.addLeft(a.Birth(newId));
 				}
-                else
-                {
+				else
+				{
 					line.addRight(a.Birth(newId));
 				}
-			}	
+			}
 		}
 	}
 }
@@ -149,7 +155,7 @@ class Wizard : Unit
 class Tumbleweed : Unit
 {
 	public Tumbleweed()
-    {
+	{
 		_id = 4;
 		_name = "Tumbleweed";
 		_hp = 15;
@@ -160,10 +166,11 @@ class Tumbleweed : Unit
 		_cost = 15;
 		_chance = 0;
 	}
+
 	public override void SpecialAbility(Line line, uint index, char friendly)
-    {
+	{
 		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
-    }
+	}
 }
 
 class Skeleton : Unit
@@ -180,6 +187,7 @@ class Skeleton : Unit
 		_cost = 1;
 		_chance = 0.2f;
 	}
+
 	public override void SpecialAbility(Line line, uint index, char friendly)
 	{
 		//Íè÷åãî íå ïðîèçîøëî õûûûû
@@ -200,32 +208,32 @@ class Spearman : Unit
 		_cost = 4;
 		_chance = 0.2f;
 	}
+
 	public override void SpecialAbility(Line line, uint index, char friendly)
 	{
-		if(IsAbility())
-        {
+		if (IsAbility())
+		{
 			List<IUnit> enemy = GetEnemyFront(friendly, line);
 			if (index == 0)
-            {
+			{
 				if (enemy.Count > 2)
 				{
 					enemy[2].Hit(15);
 					enemy[0].Hit(4);
 					enemy[1].Hit(4);
 				}
-				else if(enemy.Count == 2)
-                {
+				else if (enemy.Count == 2)
+				{
 					enemy[1].Hit(15);
 					enemy[0].Hit(4);
 				}
-				else if(enemy.Count == 1)
-                {
+				else if (enemy.Count == 1)
+				{
 					enemy[0].Hit(15);
 				}
 			}
-			else
-				if(enemy.Count == 1)
-					enemy[0].Hit(15);
+			else if (enemy.Count == 1)
+				enemy[0].Hit(15);
 		}
 	}
 }
@@ -244,35 +252,37 @@ class Necromancer : Unit
 		_cost = 8;
 		_chance = 0.1f;
 	}
+
 	public override void SpecialAbility(Line line, uint index, char friendly)
 	{
-		if(IsAbility())
-        {
+		if (IsAbility())
+		{
 			Barracks a = new Barracks();
 			int summon = 0;
-			if(friendly == 'l')
-            {
+			if (friendly == 'l')
+			{
 				summon = line.leftDeath;
-				for(int i = 0; i<summon; i++)
-                {
+				for (int i = 0; i < summon; i++)
+				{
 					line.addLeft(a.Birth(8));
-                }
-            }
+				}
+			}
 			else
-            {
+			{
 				summon = line.rightDeath;
 				for (int i = 0; i < summon; i++)
 				{
 					line.addRight(a.Birth(8));
 				}
 			}
-        }
+		}
 	}
 }
 
 class Warlock : Unit
 {
 	int AbilityDuration = 0;
+
 	public Warlock()
 	{
 		_id = 11;
@@ -286,24 +296,25 @@ class Warlock : Unit
 		_chance = 0.15f;
 		AbilityDuration = 0;
 	}
+
 	public override void SpecialAbility(Line line, uint index, char friendly)
 	{
-		if(IsAbility() && AbilityDuration == 0)
-        {
+		if (IsAbility() && AbilityDuration == 0)
+		{
 			_dmg += 4;
 			_def += 8;
 			AbilityDuration = 3;
-        }
-		else if(AbilityDuration == 1)
-        {
+		}
+		else if (AbilityDuration == 1)
+		{
 			AbilityDuration = 0;
 			_dmg -= 4;
 			_def -= 8;
 		}
-		else if(AbilityDuration != 0)
-        {
+		else if (AbilityDuration != 0)
+		{
 			AbilityDuration--;
-        }
+		}
 	}
 }
 
@@ -311,6 +322,7 @@ class Demon : Unit
 {
 	int oldHp = 0;
 	int AbilityDuration = 0;
+
 	public Demon()
 	{
 		_id = 12;
@@ -326,21 +338,21 @@ class Demon : Unit
 
 	public override void SpecialAbility(Line line, uint index, char friendly)
 	{
-		if(_hp != _maxHP && IsAbility() && AbilityDuration == 0)
-        {
+		if (_hp != _maxHP && IsAbility() && AbilityDuration == 0)
+		{
 			oldHp = _hp;
 			_hp = 100;
 			_dmg += 5;
 			AbilityDuration = 4;
-        }
-		else if(AbilityDuration == 1)
-        {
+		}
+		else if (AbilityDuration == 1)
+		{
 			_hp = oldHp - 100 + _hp;
 			_dmg -= 5;
 			AbilityDuration--;
-        }
-		else if(_hp != _maxHP)
-        {
+		}
+		else if (_hp != _maxHP)
+		{
 			AbilityDuration--;
 		}
 	}
@@ -360,6 +372,7 @@ class Kamenuka : Unit
 		_cost = 15;
 		_chance = 0;
 	}
+
 	public override void SpecialAbility(Line line, uint index, char friendly)
 	{
 		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
@@ -380,10 +393,11 @@ class Kotopulka : Unit
 		_cost = 10;
 		_chance = 0.15f;
 	}
+
 	public override void SpecialAbility(Line line, uint index, char friendly)
 	{
-		if(IsAbility())
-        {
+		if (IsAbility())
+		{
 			List<IUnit> enemy = GetEnemyFront(friendly, line);
 
 			if (enemy.Count > 2)
@@ -420,26 +434,27 @@ class PolitePerson : Unit
 		_cost = 2;
 		_chance = 0.05f;
 	}
+
 	public override void SpecialAbility(Line line, uint index, char friendly)
 	{
-		if(IsAbility())
-        {
+		if (IsAbility())
+		{
 			List<IUnit> enemy = GetEnemyFront(friendly, line);
-			for(int i = 0; i < enemy.Count; i++)
-            {
+			for (int i = 0; i < enemy.Count; i++)
+			{
 				enemy[i].Hit(99);
-            }
-        }
+			}
+		}
 	}
 }
-
 
 
 // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ IUnit
 class TestUnit : Unit
 {
 	public TestUnit()
-	{}
+	{
+	}
 
 	public TestUnit(uint id, int hp, uint dmg, uint def, uint range, uint cost, float chance)
 	{
@@ -486,25 +501,27 @@ class Warior : Unit
 			int index = (int) (UnityEngine.Random.Range(0.0f, .99f) * ups.Count);
 			switch (ups[index])
 			{
-				case "Ð¨Ð»ÐµÐ¼" : 
+				case "Ð¨Ð»ÐµÐ¼":
 					warior.DressedAmmunitions.Add(new Hemlet());
-					break; 
-				case "Ð©Ð¸Ñ‚" : 
+					break;
+				case "Ð©Ð¸Ñ‚":
 					warior.DressedAmmunitions.Add(new Shield());
-					break; 
-				case "ÐŸÐ¸ÐºÐ°" : 
+					break;
+				case "ÐŸÐ¸ÐºÐ°":
 					warior.DressedAmmunitions.Add(new Peak());
-					break; 
-				case "ÐšÐ¾Ð½ÑÑˆÐºÐ°" : 
+					break;
+				case "ÐšÐ¾Ð½ÑÑˆÐºÐ°":
 					warior.DressedAmmunitions.Add(new Horse());
 					break;
-				default : break;
+				default: break;
 			}
+
 			return true;
 		}
 
 		return false;
 	}
+
 	public override void SpecialAbility(Line line, uint index, char friendly)
 	{
 		List<IUnit> friends = this.GetFriendlyFront(friendly, line);
@@ -513,11 +530,12 @@ class Warior : Unit
 			bool dressFlg = false;
 			if (index > 0 && friends[(int) index - 1].Id == 5)
 			{
-				dressFlg = Dress((Kinght)friends[(int) index - 1]);
+				dressFlg = Dress((Kinght) friends[(int) index - 1]);
 			}
+
 			if (!dressFlg && index < friends.Count - 1 && friends[(int) index + 1].Id == 5)
 			{
-				Dress((Kinght)friends[(int) index + 1]);
+				Dress((Kinght) friends[(int) index + 1]);
 			}
 		}
 	}
@@ -565,6 +583,7 @@ class Kinght : Unit
 	}
 
 	public List<IAmmunition> DressedAmmunitions { get; } = new List<IAmmunition>();
+
 	public override void SpecialAbility(Line line, uint index, char friendly)
 	{
 		// ï¿½ï¿½ï¿½ï¿½ï¿½-ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
@@ -575,7 +594,7 @@ class Kinght : Unit
 	{
 		// Get hit from enemy.
 		base.Hit(damageTaken);
-		
+
 		// May lose one of dressed ammunition.
 		if (IsAbility())
 		{
@@ -583,7 +602,7 @@ class Kinght : Unit
 
 			if (idx >= 0)
 			{
-				 DressedAmmunitions.RemoveAt(idx);
+				DressedAmmunitions.RemoveAt(idx);
 			}
 		}
 	}
@@ -640,12 +659,13 @@ class Healer : Unit
 			if (friends.Count > 1)
 			{
 				if (index > 0)
-					friend = friends[(int)index - 1];
-				if (index < friends.Count - 1 && (friend == null || friend.Health < friends[(int) index + 1].Health))
+					friend = friends[(int) index - 1];
+				if (index < friends.Count - 1 &&
+				    (friend == null || friend.Health < friends[(int) index + 1].Health))
 					friend = friends[(int) index + 1];
-				
+
 				if (friend != null)
-					friend.Heal((uint)friend.Health);
+					friend.Heal((uint) friend.Health);
 			}
 		}
 	}
