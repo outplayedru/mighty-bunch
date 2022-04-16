@@ -182,7 +182,7 @@ class Skeleton : Unit
 	}
 	public override void SpecialAbility(Line line, uint index, char friendly)
 	{
-		//Ничего не произошло хыыыы
+		//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	}
 }
 
@@ -272,7 +272,7 @@ class Necromancer : Unit
 
 class Warlock : Unit
 {
-	int AbilityDuration = 0;
+	public int AbilityDuration = 0;
 	public Warlock()
 	{
 		_id = 11;
@@ -309,8 +309,8 @@ class Warlock : Unit
 
 class Demon : Unit
 {
-	int oldHp = 0;
-	int AbilityDuration = 0;
+	public int oldHp = 0;
+	public int AbilityDuration = 0;
 	public Demon()
 	{
 		_id = 12;
@@ -401,7 +401,7 @@ class Kotopulka : Unit
 			{
 				enemy[0].Hit(4);
 			}
-			//добавить линию сверху и снизу
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
 		}
 	}
 }

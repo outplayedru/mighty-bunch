@@ -1,13 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
+using System.Text.RegularExpressions;
 
 
 public class Field 
 {
 	private static Field instance;
 	private static object instanceLock = new object();
-
+	private static string savePath = "note1.txt";
+		
 	List<Line> lines;
 	Barracks barracks;
 
@@ -16,7 +20,7 @@ public class Field
 		this.lines = new List<Line>(linesCount);
 	}
 
-	public static Field getInstance(int linesCount)
+	public static Field getInstance(int linesCount = 1)
 	{
 		if (instance == null)
 		{
@@ -50,8 +54,8 @@ public class Field
 
 	public void Wasted()
 	{
-		//Подписчик на проигрыш линии
-		//Переносит юнитов в другую линию если пришло сообщение о проигрыше 
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 
 	}
 
 	public void MovementIteration()
@@ -59,6 +63,52 @@ public class Field
 		foreach (var line in lines)
 		{
 			line.Movement();
+		}
+	}
+	
+	public void Save()
+	{
+		String result = "";
+		foreach (var line in lines)
+		{
+			result = result + line.ToString() + "\n";
+		}
+
+		try
+		{
+			StreamWriter sw = new StreamWriter(savePath);
+			sw.WriteLine(result);
+			sw.Close();
+		}
+		catch(Exception e)
+		{
+		}
+
+	}
+
+	public void Load()
+	{
+		String row;
+		try
+		{
+			StreamReader sr = new StreamReader(savePath);
+			Regex regex = new Regex(@"{(.+)}");
+			row = sr.ReadLine();
+			while (row != null)
+			{
+				if (regex.Matches(row).Count > 0)
+				{
+					Line line = new Line();
+					line.Deserialization(regex.Matches(row)[0].Value);
+					this.lines.Add(line);
+				}
+				row = sr.ReadLine();
+			}
+			sr.Close();
+		}
+		catch(Exception e)
+		{
+			Console.WriteLine("Exception: " + e.Message);
 		}
 	}
 }
