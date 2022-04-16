@@ -4,10 +4,12 @@ using UnityEngine;
 
 public abstract class UnitFactory
 {
-	public IUnit CreateUnit()
+	public IUnit CreateUnit(int hp)
 	{
 		IUnit unit = Create();
 		// ����� ��� ��������������� ������������
+		if (hp > 0)
+			unit.Hit((uint)(unit.Health + unit.Defense - hp));
 		return unit;
 	}
 
@@ -157,7 +159,7 @@ class Barracks
 
 	UnitFactory uintFactory;
 
-	public IUnit Birth(int id)
+	public IUnit Birth(int id, int hp = 0)
 	{
 		if (id == 0)
 		{
@@ -203,7 +205,7 @@ class Barracks
 		{
 			uintFactory = new PolitePersonCreator();
 		}
-		return uintFactory.CreateUnit();
+		return uintFactory.CreateUnit(hp);
 		
 	}
 }
