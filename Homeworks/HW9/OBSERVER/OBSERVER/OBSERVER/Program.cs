@@ -44,14 +44,17 @@ class Session : ITest
     public void Result()
     {
         Random rnd = new Random();
-        retest.points = rnd.Next(1, 100);
+        retest.pointsForGood = rnd.Next(1, 100);
+        retest.pointsForBad = rnd.Next(1, 100);
+
         NotifyFlunkey();
     }
 }
 
 class Rating
 {
-    public int points { get; set; }
+    public int pointsForGood { get; set; }
+    public int pointsForBad { get; set; }
 }
 
 class Flunkey : IStudent
@@ -68,10 +71,10 @@ class Flunkey : IStudent
     {
         Rating retest = (Rating)ob;
 
-        if (retest.points > 50)
-            Console.WriteLine("Студент {0} сдал экзамен на {1}. Можно дальше ничего не делать", this.Name, retest.points);
+        if (retest.pointsForBad> 50)
+            Console.WriteLine("Студент {0} сдал экзамен на {1}. Можно дальше ничего не делать", this.Name, retest.pointsForBad);
         else
-            Console.WriteLine("Студент {0} не сдал экзамен на {1}. Придется работать...", this.Name, retest.points);
+            Console.WriteLine("Студент {0} не сдал экзамен на {1}. Придется работать...", this.Name, retest.pointsForBad);
     }
     public void StopEducation()
     {
@@ -94,12 +97,12 @@ class ExcellentStudent : IStudent
     {
         Rating retest = (Rating)ob;
 
-        if (retest.points > 75)
-            Console.WriteLine("Студент {0} сдал экзамен на хорошую оценку {1}. Все ОК;", this.Name, retest.points);
-        else if (retest.points > 50)
-            Console.WriteLine("Студент {0} сдал экзамен на {1}. Но недоволен;", this.Name, retest.points);
+        if (retest.pointsForGood > 75)
+            Console.WriteLine("Студент {0} сдал экзамен на хорошую оценку {1}. Все ОК;", this.Name, retest.pointsForGood);
+        else if (retest.pointsForGood > 50)
+            Console.WriteLine("Студент {0} сдал экзамен на {1}. Но недоволен;", this.Name, retest.pointsForGood);
         else
-            Console.WriteLine("Студент {0} недоволен результатом {1}. Плачет;", this.Name, retest.points);
+            Console.WriteLine("Студент {0} недоволен результатом {1}. Плачет;", this.Name, retest.pointsForGood);
     }
 }
 
@@ -113,8 +116,7 @@ namespace OBSERVER
             ExcellentStudent excellentStudent = new ExcellentStudent("Vasya", session);
             Flunkey flunkey = new Flunkey("Petya", session);
             session.Result();
-            session.Result();
-            session.Result();
+
         }
     }
 }
