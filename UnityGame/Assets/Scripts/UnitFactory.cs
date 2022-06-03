@@ -13,7 +13,6 @@ public abstract class UnitFactory
 		return unit;
 	}
 
-	public abstract IUnit Create();
 }
 
 // ������ ���������� ��������� ��� ������� ������
