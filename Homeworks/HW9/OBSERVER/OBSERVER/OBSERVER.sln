@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32413.511
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OBSERVER", "OBSERVER\OBSERVER.csproj", "{786651C5-10ED-4A8A-9C9E-30C85950D99E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{786651C5-10ED-4A8A-9C9E-30C85950D99E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{786651C5-10ED-4A8A-9C9E-30C85950D99E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{786651C5-10ED-4A8A-9C9E-30C85950D99E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{786651C5-10ED-4A8A-9C9E-30C85950D99E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A0740818-7C13-4A90-973F-F62FB78AA6AD}
+	EndGlobalSection
+EndGlobal
